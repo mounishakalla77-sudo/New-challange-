@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hospital Bill Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 30px;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: teal;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkcyan;
+        }
+        #summary {
+            margin-top: 20px;
+            background: #eef;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Hospital Bill Summary</h2>
+
+    <input type="text" id="patientName" placeholder="Patient Name">
+    <input type="number" id="roomCharge" placeholder="Room Charge ($)">
+    <input type="number" id="medicineCharge" placeholder="Medicine Charge ($)">
+    <input type="number" id="labCharge" placeholder="Lab Test Charge ($)">
+    <input type="number" id="doctorFee" placeholder="Doctor Fee ($)">
+
+    <button onclick="generateSummary()">Generate Summary</button>
+
+    <div id="summary"></div>
+</div>
+
+<script>
+    function generateSummary() {
+        const name = document.getElementById("patientName").value || "Unknown";
+        const room = parseFloat(document.getElementById("roomCharge").value) || 0;
+        const med = parseFloat(document.getElementById("medicineCharge").value) || 0;
+        const lab = parseFloat(document.getElementById("labCharge").value) || 0;
+        const doc = parseFloat(document.getElementById("doctorFee").value) || 0;
+        const total = room + med + lab + doc;
+
+        const summary = `PN: ${name} | Room: $${room} | Medicine: $${med} | Lab: $${lab} | Doctor: $${doc} | Total: $${total}`;
+
+        document.getElementById("summary").textContent = summary;
+    }
+</script>
+
+</body>
+</html>
